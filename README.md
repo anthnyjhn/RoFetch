@@ -14,7 +14,7 @@ Installing RoFetch is pretty easy. Import the module from Roblox library to your
 
 **Manual Installation**
 1. Get [RoFetch](https://www.roblox.com/library/17412823952/RoFetch) from the Roblox library.
-Place RoFetch directly within ReplicatedStorage
+Place Knit directly within ReplicatedStorage
 
 2. Once the module is imported, you can require the module in your script
 
@@ -23,7 +23,7 @@ local RoFetch = require(ReplicatedStorage.Packages:WaitForChild('RoFetch'))
 ```
 ## Basic Usage
 
-Performing a **GET** request method
+### Performing a **GET** request method
 ```lua
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
 local RoFetch = require(ReplicatedStorage.Packages:WaitForChild('RoFetch'))
@@ -42,10 +42,10 @@ end)
 **Parameters** 
 | Data | Description |
 | ------------- | ------------- |
-| *url: string* | The web address you are requesting data from. |
-| *headers: Variant* | Used to specify some HTTP request headers. |
+| *url: `string`* | The web address you are requesting data from. |
+| *headers: `Variant`* | Used to specify some HTTP request headers. |
 
-Performing a **POST** request method
+### Performing a **POST** request method
 
 ```lua
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
@@ -70,7 +70,16 @@ end):catch(function(err)
 end)
 ```
 
-Performing a request method by passing the relevant config to RoFetch
+**Parameters** 
+| Data | Description |
+| ------------- | ------------- |
+| *url: `string`* | The web address you are requesting data from. |
+| *data: `string`* | The data being sent. |
+| *content_type: [Enum.HttpContentType](https://create.roblox.com/docs/reference/engine/enums/HttpContentType)* | Modifies the value in the Content-Type header sent with the request. Default Value: "ApplicationJson" |
+| *compress: `bool`* | Determines whether the data is compressed (gzipped) when sent. |
+| *headers: `any`* | Used to specify some HTTP request headers. |
+
+### Performing a request method by passing the relevant **config** to RoFetch
 
 ```lua
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
@@ -92,7 +101,56 @@ end)
 
 
 
+## Built-in methods
+
+These methods are already existing in [HttpService](https://create.roblox.com/docs/reference/engine/classes/HttpService) but we just added it in this RoFetch module to make it accessible in one module.
+
+#### Encode
+
+The encode method transforms a Lua table into a JSON string 
+
+```lua
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local RoFetch = require(ReplicatedStorage.Packages:WaitForChild('RoFetch'))
+
+-- Sample data
+local Data = 
+	{
+		["name"] = "Apple MacBook Pro 16",
+		["data"] = {
+			["year"] = 2019,
+			["price"] = 1849.99,
+			["CPU model"] = "Intel Core i9",
+			["Hard disk size"] = "1 TB"
+		}
+	}
+
+-- Converting the Lua table into a JSON string
+print(RoFetch:encode(Data))
+```
+
+| Parameter | Description                |
+| :-------- | :------------------------- |
+|*input: `table`* | The JSON object being decoded.|
+
+ #### Decode
+
+The decode method transforms JSON object or array into a Lua table 
+
+```lua
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local RoFetch = require(ReplicatedStorage.Packages:WaitForChild('RoFetch'))
+
+-- Make a request using GET request method
+RoFetch:get("https://api.restful-api.dev/objects?id=3&id=5&id=10"):andThen(function(response)
+	-- decode response
+	print(RoFetch:decode(response))
+end)
+```
+
+
 ## Authors
 
 - [@evaera](https://github.com/evaera) (roblox-lua-promise)
+- [@anthnyjhn](https://github.com/anthnyjhn) (RoFetch)
 
