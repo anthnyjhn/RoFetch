@@ -14,7 +14,7 @@ Installing RoFetch is pretty easy. Import the module from Roblox library to your
 
 **Manual Installation**
 1. Get [RoFetch](https://www.roblox.com/library/17412823952/RoFetch) from the Roblox library.
-Place Knit directly within ReplicatedStorage
+Place the module directly within ReplicatedStorage
 
 2. Once the module is imported, you can require the module in your script
 
