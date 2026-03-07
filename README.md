@@ -1,16 +1,11 @@
 
 # RoFetch
 
-RoFetch is a lightweight promise-based fetch module for Roblox that simplifies the fetching process for your game.
-
-Read the [documentation](https://readme.so/editor) for more information
-
-
-
+RoFetch is a lightweight asynchronous fetch module for Roblox games that simplifies the fetching process for your game.
 
 ## Installation
 
-Installing RoFetch is pretty easy. Import the module from Roblox library to your game and drag the module into ReplicatedStorage.
+Import the module from Roblox library to your game and drag the module into ReplicatedStorage.
 
 **Manual Installation**
 1. Get [RoFetch](https://www.roblox.com/library/17412823952/RoFetch) from the Roblox library.
